@@ -30,7 +30,7 @@ Mastermind::Mastermind(int seed)
 
 
 
-bool Mastermind::CheckGuess(char sol[FIELD_SIZE])
+bool Mastermind::CheckGuess(int sol[FIELD_SIZE])
 {
     if (!solved) {
         score++;

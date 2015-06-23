@@ -17,7 +17,7 @@ class Mastermind
 {
 public:
     Mastermind(int seed = 1);
-    bool CheckGuess(char solutions[FIELD_SIZE]);
+    bool CheckGuess(int sol[FIELD_SIZE]);
     int GetScore();
     void PrintSolution();
 
