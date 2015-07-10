@@ -2,6 +2,9 @@
 #define MASTERMIND_H
 #pragma once
 
+#include <utility>
+#include <set>
+
 const int FIELD_SIZE = 5;
 
 // Enums for display purposes, everyone else can simply use numbers
@@ -17,19 +20,20 @@ class Mastermind
 {
 public:
     Mastermind(int seed = 1);
-    bool CheckGuess(int sol[FIELD_SIZE]);
+    
+    // Returns the count of pips, black then white
+    std::pair<unsigned, unsigned> CheckGuess(int sol[FIELD_SIZE]);
     int GetScore();
     void PrintSolution();
 
 protected:
     int solution[FIELD_SIZE];
+    bool solColors[NUM_ELEMENTS];
     bool duplicates;
     int score;
     bool solved;
     
     bool CheckRange(colors c);
-
-
 };
 
 #endif //MASTERMIND_H

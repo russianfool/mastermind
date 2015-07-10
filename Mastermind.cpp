@@ -8,6 +8,7 @@ Mastermind::Mastermind(int seed)
     : duplicates(false)
     , score(0)
     , solved(false)
+    , solColors {false}
 {
     // TODO: proper random function from <random> with seed
     if (seed == 1) {
@@ -18,33 +19,40 @@ Mastermind::Mastermind(int seed)
     }
     
     int i = 0, tmp = 0;
-    bool dupes[NUM_ELEMENTS] = {false};
+    
     while (i < FIELD_SIZE) {
         tmp = rand() % NUM_ELEMENTS;
-        if (dupes[tmp] == false) {
+        if (solColors[tmp] == false) {
             solution[i++] = tmp;
-            dupes[tmp] = true;
+            solColors[tmp] = true;
         }
     }
 }
 
 
 
-bool Mastermind::CheckGuess(int sol[FIELD_SIZE])
+std::pair<unsigned, unsigned> Mastermind::CheckGuess(int sol[FIELD_SIZE])
 {
     if (!solved) {
         score++;
     }
     
-    // TODO: error checking/range checking
+    bool recColors[NUM_ELEMENTS] = {false};
+    std::pair<unsigned, unsigned> p (0, 0);
+    
     for (int i = 0; i < FIELD_SIZE; i++) {
-        if (sol[i] != solution[i]) {
-            return false;
+        if (sol[i] == solution[i]) {
+            p.first++;
+            recColors[solution[i]] = true;
+        } else if ((solColors[sol[i]] == true)
+                    && (recColors[sol[i]] == false)) 
+        {
+            p.second++;
+            recColors[sol[i]] = true;
         }
     }
     
-    solved = true;
-    return true;
+    return p;
 }
 
 

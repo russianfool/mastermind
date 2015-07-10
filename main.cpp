@@ -22,22 +22,19 @@ int BogoSolve(int seed=1)
                 dupes[tmp] = true;
             }
         }
-        if (game.GetScore() % 1000 == 0) {
-            std::cout << "Bogo still running, " 
-                << game.GetScore() 
-                << " solutions tried" 
-                << std::endl;
-        }
-    } while (game.CheckGuess(solution) == false);
+    } while (game.CheckGuess(solution).first != FIELD_SIZE);
     
     return game.GetScore();
 }
 
 int main()
-{
-    int bogoResult = BogoSolve();
+{       
+    int i, sum;
+    for (i = 0, sum = 0; i < 10000; i++) {
+        sum += BogoSolve();
+    }
     
-    std::cout << "Bogo solution solved in " << bogoResult << std::endl;
+    std::cout << "Bogo solution solved in " << (double)sum/i << " on average" << std::endl;
     
     return 0;
 }
