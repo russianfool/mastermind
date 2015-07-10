@@ -1,7 +1,7 @@
 CC=g++
 CPPFLAGS=--std=c++11
 
-MastermindTest: Mastermind.o
+MastermindTest: Mastermind.o main.cpp
 	$(CC) $(CPPFLAGS) Mastermind.o main.cpp -o MastermindTest
 
 Mastermind.o: Mastermind.cpp Mastermind.h
