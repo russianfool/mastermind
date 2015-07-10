@@ -44,8 +44,8 @@ std::pair<unsigned, unsigned> Mastermind::CheckGuess(int sol[FIELD_SIZE])
         if (sol[i] == solution[i]) {
             p.first++;
             recColors[solution[i]] = true;
-        } else if ((solColors[sol[i]] == true)
-                    && (recColors[sol[i]] == false)) 
+        } else if ((solColors[sol[i]] == true) // color is a solution color
+                    && (recColors[sol[i]] == false)) // and hasn't put a pip yet
         {
             p.second++;
             recColors[sol[i]] = true;
