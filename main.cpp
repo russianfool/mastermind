@@ -97,8 +97,8 @@ double RunSolution(int (*f)(int), int times)
     for (i = 0, sum = 0; i < times; i++) {
         sum += (*f)(1);
         if ((i % 1000) == 0 && i != 0) {
-            std::cout << "Solution still running: " 
-                    << i << " tries taken." << std::endl;
+            std::cout << "Still running solutions: " 
+                    << i << " done." << std::endl;
         }
     }    
     return (double)sum/i;
